@@ -56,9 +56,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third-party
-    # ...
+    'mathfilters',
+    'taggit',
     # local
-    # ...
+    'myproject.apps.events',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +163,12 @@ EMAIL_HOST = get_secret("EMAIL_HOST")
 EMAIL_PORT = get_secret("EMAIL_PORT")
 EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+
+# Django image resized
+DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
+DJANGORESIZED_DEFAULT_SCALE = 0.5
+DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_KEEP_META = True
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
+DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True

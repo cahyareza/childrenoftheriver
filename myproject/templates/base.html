@@ -6,23 +6,161 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-     <link rel="icon" type="image/png" href="{% static 'site/img/favicon-32x32.png' %}" sizes="32x32" />
-     <link rel="icon" type="image/png" href="{% static 'site/img/favicon-16x16.png' %}" sizes="16x16" />
+    <!-- Fontawesome   -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Debug css -->
+    <link rel="stylesheet" href="{% static 'site/css/debug.css' %}" crossorigin="anonymous" />
+
+    <link rel="icon" type="image/png" href="{% static 'site/img/favicon-32x32.png' %}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{% static 'site/img/favicon-16x16.png' %}" sizes="16x16" />
 
     <title>{% trans "Halo, Dunia!" %}</title>
   </head>
   <body>
-    <div class="container my-5">
+    <!---------- NAVBAR START ---------->
+    <nav id="navbarapp" class="navbar has-background-info-light" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+
+        <a class="navbar-item" >
+          <img src="{% static 'site/img/logo.svg' %}" width="60" height="40">
+        </a>
+
+        <a v-bind:aria-expanded="isActive" v-bind:class="{ 'is-active': isActive }" role="button" class="navbar-burger"
+           aria-label="menu" data-target="navbarMenu" @click="isActive = !isActive">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarMenu" class="navbar-menu" v-bind:class="{ 'is-active': isActive }">
+          <div class="navbar-start has-text-weight-bold">
+              <a class="navbar-item">Acara</a>
+              <a class="navbar-item">Artikel</a>
+          </div>
+
+          <div class="navbar-end has-text-weight-bold">
+            <div class="navbar-item has-text-left">
+              <a class="navbar-item" href="https://www.instagram.com/einvitation_wedding/" target="_blank">
+                <i class="fa-brands fa-2x fa-instagram has-text-dark"></i>
+              </a>
+            </div>
+          </div>
+      </div>
+
+    </nav>
+    <!---------- NAVBAR END ---------->
+
+    <div class="container">
       {% block content %}
       {% endblock %}
     </div>
+
+    <!---------- FOOTER ---------->
+    <section class="hero is-medium" style="background-image: url('{% static "site/img/white_background.jpg" %}')">
+      <div class="hero-footer has-background-primary p-3">
+        <div class="container">
+          <!--     FOOTER     -->
+          <div class="columns is-multiline is-vcentered is-mobile">
+            <div class="column
+            is-12-mobile
+            is-6-tablet
+            is-6-desktop
+            is-6-widescreen
+            is-6-fullhd">
+                <h1 class="subtitle has-text-weight-bold is-size-5-desktop is-size-5-tablet is-size-6-mobile mb-2 px-4">
+                Tentang Kami
+                </h1>
+                <a class="subtitle is-size-5-desktop is-size-5-tablet is-size-6-mobile mb-4 px-4">Cara Kerja</a><br>
+                <a class="subtitle is-size-5-desktop is-size-5-tablet is-size-6-mobile mb-4 px-4">Profil</a><br>
+                <a class="subtitle is-size-5-desktop is-size-5-tablet is-size-6-mobile mb-4 px-4">Tim</a>
+            </div>
+
+            <div class="column
+            is-12-mobile
+            is-6-tablet
+            is-6-desktop
+            is-6-widescreen
+            is-6-fullhd pt-1">
+              <a class="subtitle has-text-weight-bold is-size-5-desktop is-size-5-tablet is-size-6-mobile px-4 mb-4">FAQ</a>
+              <h1 class="subtitle has-text-weight-bold is-size-5-desktop is-size-5-tablet is-size-6-mobile mb-4 px-4">
+                Kontak
+              </h1>
+              <div class="columns is-multiline is-mobile px-4">
+                <div class="column p-2">
+                  <article class="media">
+                    <figure class="media-left">
+                      <span class="icon is-medium">
+                        <a href="https://api.whatsapp.com/send?phone=62895339197044" target="_blank">
+                            <i class="fa-brands fa-2x fa-whatsapp has-text-dark"></i>
+                        </a>
+                      </span>
+                    </figure>
+                  </article>
+                </div>
+                <div class="column p-2">
+                  <article class="media">
+                    <figure class="media-left">
+                      <span class="icon is-medium">
+                        <a href="https://www.instagram.com/einvitation_wedding/" target="_blank">
+                            <i class="fa-brands fa-2x fa-instagram has-text-dark"></i>
+                        </a>
+                      </span>
+                    </figure>
+                  </article>
+                </div>
+                <div class="column p-2">
+                  <article class="media">
+                    <figure class="media-left">
+                      <span class="icon is-medium">
+                        <a href="mailto:undangannikah874@gmail.com" target="_blank">
+                            <i class="fa-solid fa-2x fa-at has-text-dark"></i>
+                        </a>
+                      </span>
+                    </figure>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <div class="column is-12 has-text-centered mt-5 has-text-weight-semibold">
+              <p class="subtitle is-size-6 has-text-black">
+                  © {% now "Y" %} Copyright {{ nama_domain }}
+              </p>
+            </div>
+          </div>
+          <!--     FOOTER END     -->
+        </div>
+      </div>
+    </section>
+    <!---------- FOOTER END ---------->
+
     <!-- Optional JavaScript -->
+    <!-- vue3 -->
+    <script src="https://unpkg.com/vue@3"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      const { createApp } = Vue
+
+      <!----------   NAVBAR   ---------->
+      const navbarapp = createApp({
+          el: '#navbarapp',
+          delimiters: ['[[', ']]'],
+          data () {
+              return {
+                  isActive: false,
+              }
+          },
+      })
+
+      navbarapp.mount('#navbarapp')
+      <!----------   NAVBAR END   ---------->
+    </script>
   </body>
 </html>
