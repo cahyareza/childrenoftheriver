@@ -2,81 +2,174 @@
 {% load i18n static mathfilters %}
 
 {% block content %}
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-        <div class="title">{% trans 'Acara mendatang' %}</div>
-        <div class="columns">
-            {% for event in events %}
-            <div class="column is-4-desktop is-6-tablet is-12-mobile">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      {% if event.foto_sebelum %}
-                        <img src="{{ event.foto_sebelum }}" alt="Placeholder image">
-                      {% endif %}
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="content is-paddingless">
-                      <p class="title mb-2">{{ event.nama}}</p>
-                      <p class="subtitle mt-2 my-0">Dana Rp. {{ event.dana|floatformat:"g" }} - Terkumpul Rp. {{ event.total|floatformat:"g" }}</p>
-                      <hr class="is-paddingless">
-                      <div class="columns is-multiline">
-                          <div class="column is-6 py-1 has-text-left">
-                            <p class="subtitle mb-1">{{ event.lokasi}}</p>
-                          </div>
-                          <div class="column is-6 py-1 has-text-right">
-                            <p class="subtitle mb-1 mt-1">{{ event.remaining_days }} hari lagi</p>
-                          </div>
-                          <div class="column is-12 py-1">
-                            <div class="tags">
-                                {% for tag in event.tags.all %}
-                                    <span> <a class="tag is-medium has-background-info m-1">{{ tag }}</a></span>
-                                {% endfor %}
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            {% endfor %}
+    <section class="home">
+      <div class="container px-3">
+        <div class="columns is-multiline is-vcentered p-1">
+          <div class="column
+          is-12-mobile
+          is-6-tablet
+          is-6-desktop">
+            <figure class="image is-5by4">
+              <img src="{% static 'site/img/home.png' %}" />
+            </figure>
+          </div>
+          <div class="column
+          is-12-mobile
+          is-6-tablet
+          is-6-desktop has-text-centered">
+            <p class="subtitle is-size-5">
+              Merupakan komunitas yang fokus pada kegiatanya melakukan konservasi sungai, sempadan sungai, dan Biodiversitas area kawasan kanan-kiri sungai.
+            </p>
+            <a href="#" class="button button-cot">Selengkapnya</a>
+          </div>
         </div>
-        <div class="title">{% trans 'Acara selesai' %}</div>
-        <div class="columns">
-            <div class="column is-4-desktop is-6-tablet is-12-mobile">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-48x48">
-                          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+      </div>
+    </section>
+
+    <section class="hero is-small p-3" style="background-color: #5CE7EC">
+      <div class="container px-3">
+        <div class="columns is-multiline is-mobile">
+          <div class="column
+          is-6 has-text-centered">
+            <article class="media">
+              <figure class="media-center">
+                <p class="image is-128x128" style="background-color: #5CE7EC">
+                  <img class="is-rounded" src="{% static 'site/img/eye-svgrepo-com.svg' %}">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <h1 class="title is-size-4 is-uppercase" style="color:#008037">Visi</h1>
+                  <p class="subtitle is-size-6">
+                    Mewujudkan pengembangan dan perlindungan sungai di Indonesia serta stakeholder di dalamnyaMewujudkan pengembangan dan perlindungan sungai di Indonesia serta stakeholder di dalamnya.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="column
+          is-6 has-text-centered">
+            <article class="media">
+              <figure class="media-center">
+                <p class="image is-128x128">
+                  <img class="is-rounded" src="{% static 'site/img/target-svgrepo-com.svg' %}">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <h1 class="title is-size-4 is-uppercase" style="color:#008037">Misi</h1>
+                  <p class="subtitle is-size-6">
+                    Melakukan konservasi, edukasi, advokasi dan riset untuk keberlanjutan sungai serta lingkunganya bersamaan dengan pengembangan ekonomi, sosial dan budaya masyarakat pinggir sungai
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="program">
+      <div class="container p-3 has-text-centered">
+        <h1 class="title is-size-4 is-uppercase" style="color:#008037">Program rutin</h1>
+        <div class="columns is-multiline is-vcentered p-1">
+          <div class="column
+          is-4">
+            <figure class="img-home">
+              <img src="{% static 'site/img/home.png' %}" />
+            </figure>
+            <p class="subtitle">Bersih –bersih lingkungan sungai dari sampah / tumbuhan liar</p>
+          </div>
+          <div class="column
+          is-4">
+            <figure class="img-home">
+              <img src="{% static 'site/img/home.png' %}" />
+            </figure>
+            <p class="subtitle">Ground cek ke lapang untuk mengecek fungsi sempadan sungai, dan bangunan liar</p>
+          </div>
+          <div class="column
+          is-4">
+            <figure class="img-home">
+              <img src="{% static 'site/img/home.png' %}" />
+            </figure>
+            <p class="subtitle">Melakukan pemetaan area KAKISU yang gundul</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+            <div class="title is-size-4 is-uppercase has-text-centered" style="color:#008037">{% trans 'Acara mendatang' %}</div>
+            <div class="columns">
+                {% for event in events_mendatang %}
+                <div class="column is-4-desktop is-6-tablet is-12-mobile">
+                    <div class="card">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          {% if event.foto_sebelum %}
+                            <img src="{{ event.foto_sebelum.url }}" alt="Placeholder image">
+                          {% endif %}
                         </figure>
                       </div>
-                      <div class="media-content">
-                        <p class="title is-4">John Smith</p>
-                        <p class="subtitle is-6">@johnsmith</p>
+                      <div class="card-content">
+                        <div class="content is-paddingless">
+                          <p class="title is-size-4 is-capitalized mb-2">{{ event.nama}}</p>
+                          <p class="subtitle is-size-6 mt-2 my-0">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }} <br>
+                              <span class="has-text-info">Donasi terkumpul Rp. {{ event.total|floatformat:"g" }}</span>
+                          </p>
+                          <hr class="is-paddingless">
+                          <div class="columns is-multiline">
+                              <div class="column is-6 py-1 has-text-left">
+                                <p class="subtitle is-size-6 mb-1">{{ event.lokasi}}</p>
+                              </div>
+                              <div class="column is-6 py-1 has-text-right">
+                                <p class="subtitle is-size-6 mb-1 mt-1">{{ event.remaining_days }} hari lagi</p>
+                              </div>
+                              <div class="column is-12 py-1">
+                                <div class="tags">
+                                    {% for tag in event.tags.all %}
+                                        <span> <a class="tag is-medium has-background-light m-1">{{ tag }}</a></span>
+                                    {% endfor %}
+                                </div>
+                              </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    <div class="content">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                      <a href="#">#css</a> <a href="#">#responsive</a>
-                      <br>
-                      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                    </div>
-                  </div>
                 </div>
+                {% endfor %}
+            </div>
+            <div class="has-text-centered">
+                <a href="#" class="button button-cot">Lebih banyak</a>
             </div>
         </div>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
+
+    <section class="hero" style="background-color: #03898E">
+      <div class="container px-3">
+        <div class="columns is-multiline is-vcentered p-1">
+          <div class="column
+          is-12-mobile
+          is-6-tablet
+          is-6-desktop has-text-centered">
+            <h1 class="title is-size-4 is-capitalized has-text-white mb-3">Alam Membutuhkan Kamu!!!</h1>
+            <p class="subtitle is-size-5 has-text-white mt-3">
+              Dengan memberikan donasi, kamu ikut mendukung upaya kami dalam melindungi alam.
+            </p>
+            <a href="#" class="button button-cot">DONASI</a>
+          </div>
+          <div class="column
+          is-12-mobile
+          is-6-tablet
+          is-6-desktop">
+            <figure class="image is-5by4">
+              <img src="{% static 'site/img/sampah_ciliwung.png' %}" />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
 {% endblock %}

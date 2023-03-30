@@ -5,17 +5,23 @@ from django_resized import ResizedImageField
 from datetime import datetime
 from taggit.managers import TaggableManager
 
+KETERANGAN_CHOICES = (
+    ('Selesai', 'Selesai'),
+    ('Mendatang', 'Mendatang'),
+)
 
 class Event(CreationModificationDateBase, UrlBase):
     nama = models.CharField(max_length=255)
     deskripsi = models.TextField(max_length=1000)
     dana = models.CharField(max_length=50)
     tanggal_acara = models.DateField()
+    tanggal_donasi_selesai = models.DateField()
     lokasi = models.CharField(max_length=255)
     # kedepan dibuat multiple image
     foto_sebelum = ResizedImageField(scale=0.5, quality=50, upload_to='whatever')
     foto_setelah = ResizedImageField(scale=0.5, quality=50, upload_to='whatever')
     tags = TaggableManager()
+    keterangan = models.CharField(max_length=50, choices=KETERANGAN_CHOICES, default='Mendatang')
 
     def __str__(self):
         return self.nama
@@ -26,7 +32,7 @@ class Event(CreationModificationDateBase, UrlBase):
 
     @property
     def remaining_days(self):
-        remaining = ( self.tanggal_acara - datetime.now().date()).days
+        remaining = ( self.tanggal_donasi_selesai - datetime.now().date()).days
         return remaining
 
 

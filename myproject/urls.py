@@ -27,6 +27,8 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('', include(("myproject.apps.core.urls", "core"), namespace="core")),
+    path('about/', include(("myproject.apps.about.urls", "about"), namespace="about")),
+    path('event/', include(("myproject.apps.events.urls", "event"), namespace="event")),
     prefix_default_language=False,
 )
 
