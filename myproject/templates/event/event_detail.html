@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block content %}
+    <div class="container p-3">
+        <div class="columns is-multiline">
+          <div class="columns is-multiline is-mobile">
+              <div class="column
+              is-8-mobile
+              is-8-tablet
+              is-8-desktop">
+                <p class="title">{{ event.nama }}</p>
+                <div class="tags">
+                    {% for tag in event.tags.all %}
+                        <span> <a class="tag is-medium has-background-light">{{ tag }}</a></span>
+                    {% endfor %}
+                    <p class="subtitle pb-2 px-2">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }}</p>
+                </div>
+              </div>
+              <div class="column
+              is-4-mobile
+              is-4-tablet
+              is-4-desktop">
+                  <a class="button button-cot" href="{% url 'event:donasi' %}">Donasi</a>
+              </div>
+          </div>
+          <div class="column
+          is-12-mobile
+          is-12-tablet
+          is-12-desktop">
+            <figure class="image is-3by2">
+              {% if event.foto_sebelum %}
+                <img src="{{ event.foto_sebelum.url }}" alt="Placeholder image">
+              {% endif %}
+            </figure>
+          </div>
+          <div class="column
+          is-12-mobile
+          is-12-tablet
+          is-12-desktop">
+            <div class="card p-6">
+                <div class="columns is-multiline">
+                  <div class="column
+                  is-12-mobile
+                  is-12-tablet
+                  is-12-desktop">
+                      <div class="title">Deskripsi</div>
+                      <div class="subtitle">{{ event.deskripsi }}</div>
+                  </div>
+                  <div class="column
+                  is-12-mobile
+                  is-12-tablet
+                  is-12-desktop">
+                      <div class="title">Lokasi</div>
+                      <figure class="image is-16by9">
+                        <iframe class="has-ratio" width="640" height="360" src="{{ event.lokasi }}" frameborder="0" allowfullscreen></iframe>
+                      </figure>
+                  </div>
+                  <div class="column
+                  is-12-mobile
+                  is-12-tablet
+                  is-12-desktop">
+                      <div class="title">Daftar Donatur</div>
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Nama</th>
+                              <th>Tanggal</th>
+                              <th>Jumlah</th>
+                              <th>Ucapan</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for dana in event.event.all %}
+                            <tr>
+                              <td class="has-text-centered">{{ forloop.counter }}</td>
+                              <td class="has-text-centered">{{ dana.nama_penyumbang }}</td>
+                              <td class="has-text-centered">{{ dana.created|date:"d M Y" }}</td>
+                              <td class="has-text-centered">{{ dana.jumlah }}</td>
+                              <td class="has-text-centered">{{ dana.ucapan }}</td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="column
+                  is-12-mobile
+                  is-12-tablet
+                  is-12-desktop">
+                      <div class="title">Komentar</div>
+                      <div class="hero is-small has-background-primary">
+                        {% for komentar in komentars %}
+                          <div class="section">
+                              <div class="container">
+                                  <div class="card">
+                                      <div class="card-content p-4">
+                                          <div class="media-content mb-2">
+                                            <p class="subtitle is-6">{{ komentar.nama }} <span class="subtitle is-7">di {{ komentar.daerah }}</span></p>
+                                          </div>
+                                          <div class="content">
+                                            {{ komentar.komentar }}
+                                            <br>
+                                            <span class="subtitle is-7">{{ komentar.created|date:"l, d M Y" }}</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                  </div>
+                  <div class="column
+                  is-12-mobile
+                  is-12-tablet
+                  is-12-desktop">
+                      <div class="subtitle has-text-centered">Kirim Komentar</div>
+                      {% include "event/parts/komentar.html" %}
+                  </div>
+                </div>
+            </div>
+          </div>
+         </div>
+    </div>
+{% endblock %}

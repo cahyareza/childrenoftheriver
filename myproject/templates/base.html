@@ -27,7 +27,7 @@
     <nav id="navbarapp" class="navbar has-background-white" role="navigation" aria-label="main navigation" style="padding: 10px 0;">
       <div class="navbar-brand">
 
-        <a class="navbar-item" >
+        <a class="navbar-item" href="/">
           <img src="{% static 'site/img/logo.png' %}" style="max-height: 3.5rem !important;">
         </a>
 
@@ -42,11 +42,11 @@
       <div id="navbarMenu" class="navbar-menu" v-bind:class="{ 'is-active': isActive }">
           <div class="navbar-end has-text-weight-bold">
             <div class="navbar-item has-text-left">
-              <a class="navbar-item">HOME</a>
-              <a class="navbar-item">TENTANG</a>
-              <a class="navbar-item">ACARA</a>
+              <a class="navbar-item" href="/">HOME</a>
+              <a class="navbar-item" href="{% url 'about:profil' %}">TENTANG</a>
+              <a class="navbar-item" href="{% url 'event:event_list' %}">ACARA</a>
               <a class="navbar-item">BLOG</a>
-              <a class="button button-cot">DONASI</a>
+              <a class="button button-cot" href="{% url 'event:donasi' %}">DONASI</a>
             </div>
           </div>
       </div>

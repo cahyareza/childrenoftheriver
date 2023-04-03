@@ -4,6 +4,7 @@ from PIL import Image
 from django_resized import ResizedImageField
 from datetime import datetime
 from taggit.managers import TaggableManager
+from django.utils.text import slugify
 
 KETERANGAN_CHOICES = (
     ('Selesai', 'Selesai'),
@@ -12,6 +13,7 @@ KETERANGAN_CHOICES = (
 
 class Event(CreationModificationDateBase, UrlBase):
     nama = models.CharField(max_length=255)
+    slug = slug = models.SlugField(max_length=200, blank=True)
     deskripsi = models.TextField(max_length=1000)
     dana = models.CharField(max_length=50)
     tanggal_acara = models.DateField()
@@ -35,6 +37,10 @@ class Event(CreationModificationDateBase, UrlBase):
         remaining = ( self.tanggal_donasi_selesai - datetime.now().date()).days
         return remaining
 
+    # ========== SAVE FUNCTION ========== !
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.nama)
+        super().save(*args, **kwargs)
 
 class Rekening(CreationModificationDateBase, UrlBase):
     nama_bank = models.CharField(max_length=100)
@@ -53,3 +59,9 @@ class Dana(CreationModificationDateBase, UrlBase):
     ditransfer_ke = models.ForeignKey(Rekening, related_name='rekening', on_delete=models.CASCADE)
     ucapan = models.CharField(max_length=255)
     bukti = ResizedImageField(scale=0.5, quality=50, upload_to='whatever', null=True, blank=True)
+
+class Komentar(CreationModificationDateBase, UrlBase):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    nama = models.CharField(max_length=50)
+    daerah = models.CharField(max_length=50)
+    komentar = models.CharField(max_length=250)

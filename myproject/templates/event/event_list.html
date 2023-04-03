@@ -12,14 +12,22 @@
               <p class="panel-heading">
                   Kategori
               </p>
-              {% for r_val, r_display in facets.categories.keterangan %}
-                  <a class="panel-block" href="{% url '' %}">
+              <form action="" method="GET">
+                  <button class="button is-fullwidth" type="submit" name="keterangan" value="semua" style="justify-content: flex-start;">
                     <span class="panel-icon">
                       <i class="fas fa-book" aria-hidden="true"></i>
                     </span>
-                    {{ r_display }}
-                  </a>
-              {% endfor %}
+                    Semua
+                  </button>
+                  {% for r_val, r_display in facets.categories.keterangan %}
+                      <button class="button is-fullwidth" type="submit" name="keterangan" value="{{ r_val }}" style="justify-content: flex-start;">
+                        <span class="panel-icon">
+                          <i class="fas fa-book" aria-hidden="true"></i>
+                        </span>
+                        {{ r_display }}
+                      </button>
+                  {% endfor %}
+              </form>
             </nav>
           </div>
             {% for event in events %}
@@ -34,7 +42,7 @@
                   </div>
                   <div class="card-content">
                     <div class="content is-paddingless">
-                      <p class="title is-size-4 is-capitalized mb-2">{{ event.nama}}</p>
+                      <a class="title is-size-4 is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
                       <p class="subtitle is-size-6 mt-2 my-0">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }} <br>
                           <span class="has-text-info">Donasi terkumpul Rp. {{ event.total|floatformat:"g" }}</span>
                       </p>

@@ -115,7 +115,7 @@
                       </div>
                       <div class="card-content">
                         <div class="content is-paddingless">
-                          <p class="title is-size-4 is-capitalized mb-2">{{ event.nama}}</p>
+                          <a class="title is-size-4 is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
                           <p class="subtitle is-size-6 mt-2 my-0">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }} <br>
                               <span class="has-text-info">Donasi terkumpul Rp. {{ event.total|floatformat:"g" }}</span>
                           </p>
@@ -142,7 +142,7 @@
                 {% endfor %}
             </div>
             <div class="has-text-centered">
-                <a href="#" class="button button-cot">Lebih banyak</a>
+                <a href="{% url 'event:event_list' %}" class="button button-cot">Lebih banyak</a>
             </div>
         </div>
       </div>

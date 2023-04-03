@@ -1,10 +1,9 @@
-from django.shortcuts import render
-from myproject.apps.events.models import Event
-
-from .forms import EventFilterForm
+from django.shortcuts import render, get_object_or_404
+from myproject.apps.events.models import Event, Komentar
 from .models import Event, KETERANGAN_CHOICES
+from .forms import KomentarForm, DanaForm
 
-def event(request):
+def event_list(request):
     facets = {
         "categories": {
             "keterangan": KETERANGAN_CHOICES,
@@ -12,7 +11,13 @@ def event(request):
     }
     events_mendatang = Event.objects.filter(keterangan='Mendatang')
     events_selesai = Event.objects.filter(keterangan='Selesai')
-    events = Event.objects.all()
+    if request.GET.get('keterangan'):
+        if request.GET.get('keterangan') == 'semua':
+            events = Event.objects.all()
+        else:
+            events = Event.objects.filter(keterangan=request.GET.get('keterangan'))
+    else:
+        events = Event.objects.all()
 
     context = {
         'events_mendatang': events_mendatang,
@@ -23,37 +28,41 @@ def event(request):
 
     return render(request, 'event/event_list.html', context)
 
-def event_list(request):
-    qs = Event.objects.order_by("nama")
-    form = EventFilterForm(data=request.GET)
+def event_detail(request, slug):
+    event = get_object_or_404(Event,slug=slug)
+    komentars = Komentar.objects.all()
+    form = KomentarForm(request.POST or None, prefix="form")
 
-    facets = {
-        "selected": {},
-        "categories": {
-            "keterangan": KETERANGAN_CHOICES,
-        },
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.event = event
+            instance.save()
+
+    else:
+        form = KomentarForm(prefix="form")
+
+    context = {
+        'event': event,
+        'form': form,
+        'komentars': komentars,
     }
 
-    if form.is_valid():
-        filters = (
-            # query parameter, filter parameter
-            ("keterangan", "keterangan"),
-        )
-        qs = filter_facets(facets, qs, form, filters)
+    return render(request, 'event/event_detail.html', context)
 
-    context = {"form": form, "facets": facets, "object_list": qs}
+def donasi(request):
+    if request.method == 'POST':
+        form = DanaForm(request.POST or None, prefix="form")
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.event = event
+            instance.save()
 
-    return render(request, 'event/event_list.html', context)
+    else:
+        form = DanaForm(prefix="form")
 
-def filter_facets(facets, qs, form, filters):
-    for query_param, filter_param in filters:
-        value = form.cleaned_data[query_param]
-        if value:
-            selected_value = value
-            if query_param == "keterangan":
-                keterangan = int(value)
-                selected_value = (keterangan, dict(KETERANGAN_CHOICES)[keterangan])
-            facets["selected"][query_param] = selected_value
-            filter_args = {filter_param: value}
-            qs = qs.filter(**filter_args).distinct()
-    return qs
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'event/donasi.html', context)
