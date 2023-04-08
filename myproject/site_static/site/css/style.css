@@ -88,11 +88,11 @@
 }
 
 .container-time.left .date {
-  right: -120px;
+  right: -100px;
 }
 
 .container-time.right .date {
-  left: -120px;
+  left: -100px;
 }
 
 .container-time .icon {
@@ -188,4 +188,11 @@
     padding: 30px 30px 30px 90px;
     border-radius: 500px 0 0 500px;
   }
+}
+
+.tab-contents .content {
+  display: none;
+}
+.tab-contents .content.is-active {
+  display: block;
 }

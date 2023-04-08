@@ -13,15 +13,15 @@ KETERANGAN_CHOICES = (
 
 class Event(CreationModificationDateBase, UrlBase):
     nama = models.CharField(max_length=255)
-    slug = slug = models.SlugField(max_length=200, blank=True)
+    slug = slug = models.SlugField(max_length=200, blank=True, help_text="Generate otomatis jika dikosongkan")
     deskripsi = models.TextField(max_length=1000)
     dana = models.CharField(max_length=50)
     tanggal_acara = models.DateField()
     tanggal_donasi_selesai = models.DateField()
     lokasi = models.CharField(max_length=255)
     # kedepan dibuat multiple image
-    foto_sebelum = ResizedImageField(scale=0.5, quality=50, upload_to='whatever')
-    foto_setelah = ResizedImageField(scale=0.5, quality=50, upload_to='whatever')
+    foto_sebelum = ResizedImageField(scale=0.5, quality=50, upload_to='whatever', blank=True, null=True)
+    foto_setelah = ResizedImageField(scale=0.5, quality=50, upload_to='whatever', blank=True, null=True)
     tags = TaggableManager()
     keterangan = models.CharField(max_length=50, choices=KETERANGAN_CHOICES, default='Mendatang')
 

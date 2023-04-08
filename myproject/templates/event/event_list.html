@@ -30,43 +30,47 @@
               </form>
             </nav>
           </div>
-            {% for event in events %}
-            <div class="column is-5-desktop is-5-tablet is-12-mobile">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      {% if event.foto_sebelum %}
-                        <img src="{{ event.foto_sebelum.url }}" alt="Placeholder image">
-                      {% endif %}
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="content is-paddingless">
-                      <a class="title is-size-4 is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
-                      <p class="subtitle is-size-6 mt-2 my-0">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }} <br>
-                          <span class="has-text-info">Donasi terkumpul Rp. {{ event.total|floatformat:"g" }}</span>
-                      </p>
-                      <hr class="is-paddingless">
-                      <div class="columns is-multiline">
-                          <div class="column is-6 py-1 has-text-left">
-                            <p class="subtitle is-size-6 mb-1">{{ event.lokasi}}</p>
+            <div class="column is-10-desktop is-10-tablet is-12-mobile">
+                <div class="columns is-multiline">
+                    {% for event in events %}
+                    <div class="column is-5-desktop is-5-tablet is-12-mobile">
+                        <div class="card">
+                          <div class="card-image">
+                            <figure class="image is-4by3">
+                              {% if event.foto_sebelum %}
+                                <img src="{{ event.foto_sebelum.url }}" alt="Placeholder image">
+                              {% endif %}
+                            </figure>
                           </div>
-                          <div class="column is-6 py-1 has-text-right">
-                            <p class="subtitle is-size-6 mb-1 mt-1">{{ event.remaining_days }} hari lagi</p>
-                          </div>
-                          <div class="column is-12 py-1">
-                            <div class="tags">
-                                {% for tag in event.tags.all %}
-                                    <span> <a class="tag is-medium has-background-light m-1">{{ tag }}</a></span>
-                                {% endfor %}
+                          <div class="card-content">
+                            <div class="content is-paddingless">
+                              <a class="title is-size-4-tablet is-size-5-mobile is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
+                              <p class="subtitle is-size-6 mt-2 my-0">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }} <br>
+                                  <span class="has-text-info">Donasi terkumpul Rp. {{ event.total|floatformat:"g" }}</span>
+                              </p>
+                              <hr class="is-paddingless">
+                              <div class="columns is-multiline is-mobile">
+                                  <div class="column is-6 py-1 has-text-left">
+                                    <p class="subtitle is-size-6 mb-1">{{ event.lokasi}}</p>
+                                  </div>
+                                  <div class="column is-6 py-1 has-text-right">
+                                    <p class="subtitle is-size-6 mb-1 mt-1">{{ event.remaining_days }} hari lagi</p>
+                                  </div>
+                                  <div class="column is-12 py-1">
+                                    <div class="tags">
+                                        {% for tag in event.tags.all %}
+                                            <span> <a class="tag is-medium has-background-light m-1">{{ tag }}</a></span>
+                                        {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
                         </div>
                       </div>
-                    </div>
+                    {% endfor %}
                   </div>
               </div>
-              {% endfor %}
          </div>
     </div>
 {% endblock %}

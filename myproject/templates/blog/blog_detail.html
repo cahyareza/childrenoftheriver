@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title}} | {% endblock %}
+
+{% block content %}
+    <section class="section">
+        <div class="columns is-paddingless">
+            <div class="column is-8 is-offset-2">
+                <div class="container">
+                    <div class="section is-paddingless mb-5">
+                        <h1 class="title is-size-3-desktop is-size-4-tablet is-size-4-mobile mb-5">{{ post.title }}</h1>
+                        <h2 class="subtitle is-size-6-desktop is-size-6-tablet is-size-7 has-text-grey-light">
+                            <p class="subtitle  is-size-7 has-text-grey-light mt-1">
+                                <i class="fa-regular fa-calendar-days mr-0"></i> {{ post.created|date:'d M Y' }}
+                                | <i class="fa-solid fa-user"></i> {{ post.author }}
+                            </p>
+                        </h2>
+                    </div>
+                </div>
+
+                {% if post.image %}
+                    <figure class='image is-16by9 card'>
+                        <img src="{{ post.image.url }}">
+                    </figure>
+                    <figcaption class="level mt-2">
+                        <small class="level-item has-text-grey">
+                            {{ figcaption }}
+                        </small>
+                    </figcaption>
+                {% endif %}
+
+                <hr>
+
+                <div class="content is-medium-desktop is-small-tablet">
+                    <p> {{ post.body|safe }}</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

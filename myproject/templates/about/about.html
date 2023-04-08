@@ -2,37 +2,55 @@
 {% load i18n static %}
 
 {% block content %}
-    <div class="tabs is-centered is-boxed">
-      <ul>
-        <li v-bind:class="{ 'is-active': Active == 'profil' }">
-          <a @click="Active = 'profil'" href="{% url 'about:profil' %}">
-            <span>Profil</span>
-          </a>
-        </li>
-        <li v-bind:class="{ 'is-active': Active == 'visi' }">
-          <a v-on:click="Active = 'visi'" href="{% url 'about:visi_misi' %}">
-            <span>Visi & Misi</span>
-          </a>
-        </li>
-        <li v-bind:class="{ 'is-active': Active == 'tujuan' }">
-          <a v-on:click="Active = 'tujuan'" href="{% url 'about:visi_misi' %}">
-            <span>Tujuan</span>
-          </a>
-        </li>
-        <li v-bind:class="{ 'is-active': Active == 'model' }">
-          <a v-on:click="Active = 'model'">
-            <span>Model Kerja</span>
-          </a>
-        </li>
-        <li v-bind:class="{ 'is-active': Active == 'tim' }">
-          <a v-on:click="Active = 'tim'" href="{% url 'about:tim' %}">
-            <span>Tim Kami</span>
-          </a>
-        </li>
-      </ul>
+    <div id="about">
+      <div class="tabs is-centered is-boxed">
+        <ul>
+          <li v-bind:class="{ 'is-active': Active == 'profil' }">
+            <a @click="Active = 'profil'" href="{% url 'about:profil' %}">
+              <span>Profil</span>
+            </a>
+          </li>
+          <li v-bind:class="{ 'is-active': Active == 'visi' }">
+            <a v-on:click="Active = 'visi'" href="{% url 'about:visi_misi' %}">
+              <span>Visi & Misi</span>
+            </a>
+          </li>
+          <li v-bind:class="{ 'is-active': Active == 'tujuan' }">
+            <a v-on:click="Active = 'tujuan'" href="{% url 'about:visi_misi' %}">
+              <span>Tujuan</span>
+            </a>
+          </li>
+          <li v-bind:class="{ 'is-active': Active == 'model' }">
+            <a v-on:click="Active = 'model'">
+              <span>Model Kerja</span>
+            </a>
+          </li>
+          <li v-bind:class="{ 'is-active': Active == 'tim' }">
+            <a v-on:click="Active = 'tim'" href="{% url 'about:tim' %}">
+              <span>Tim Kami</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      {% block about %}
+      {% endblock %}
     </div>
+{% endblock %}
 
-  {% block about %}
-  {% endblock %}
+{% block script %}
+<script>
+  <!----------   NAVBAR   ---------->
+  const about = createApp({
+      el: '#about',
+      delimiters: ['[[', ']]'],
+      data () {
+          return {
+          }
+      },
+  })
 
+  about.mount('#about')
+  <!----------   NAVBAR END   ---------->
+</script>
 {% endblock %}

@@ -29,6 +29,8 @@ urlpatterns += i18n_patterns(
     path('', include(("myproject.apps.core.urls", "core"), namespace="core")),
     path('about/', include(("myproject.apps.about.urls", "about"), namespace="about")),
     path('event/', include(("myproject.apps.events.urls", "event"), namespace="event")),
+    path('blog/', include(("myproject.apps.blog.urls", "blog"), namespace="blog")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     prefix_default_language=False,
 )
 

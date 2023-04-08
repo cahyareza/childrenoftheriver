@@ -14,6 +14,7 @@ class Tim(CreationModificationDateBase, UrlBase):
     nama = models.CharField(max_length=250)
     posisi = models.CharField(max_length=50)
     linkedin = models.URLField(max_length=500)
+    foto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.nama

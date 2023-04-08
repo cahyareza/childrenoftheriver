@@ -50,9 +50,12 @@ INSTALLED_APPS = [
     # third-party
     'taggit',
     'mathfilters',
+    'ckeditor',
+    'ckeditor_uploader',
     # local
     'myproject.apps.events',
     'myproject.apps.about',
+    'myproject.apps.blog',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +158,5 @@ EMAIL_HOST = get_secret("EMAIL_HOST")
 EMAIL_PORT = get_secret("EMAIL_PORT")
 EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
