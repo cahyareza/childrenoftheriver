@@ -1,16 +1,8 @@
-"""
-Django settings for myproject project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.1/ref/settings/
-"""
-
 import os
 import json
 import sys
 from django.core.exceptions import ImproperlyConfigured
 from myproject.apps.core.versioning import get_git_changeset_timestamp
-from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -56,21 +48,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third-party
-    # ...
+    'taggit',
+    'mathfilters',
+    'ckeditor',
+    'ckeditor_uploader',
     # local
-    # ...
+    'myproject.apps.events',
+    'myproject.apps.about',
+    'myproject.apps.blog',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'myproject.apps.core.middleware.language.DefaultLanguageMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -130,9 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'id'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Jakarta'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -162,3 +158,5 @@ EMAIL_HOST = get_secret("EMAIL_HOST")
 EMAIL_PORT = get_secret("EMAIL_PORT")
 EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+
+CKEDITOR_UPLOAD_PATH = "uploads/"

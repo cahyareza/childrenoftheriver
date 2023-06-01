@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,7 +26,11 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('', TemplateView.as_view(template_name="index.html")),
+    path('', include(("myproject.apps.core.urls", "core"), namespace="core")),
+    path('about/', include(("myproject.apps.about.urls", "about"), namespace="about")),
+    path('event/', include(("myproject.apps.events.urls", "event"), namespace="event")),
+    path('blog/', include(("myproject.apps.blog.urls", "blog"), namespace="blog")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     prefix_default_language=False,
 )
 

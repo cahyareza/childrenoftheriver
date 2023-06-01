@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block content %}
+    <div class="container p-3">
+        <h1 class="title is-size-4-desktop is-size-5-tablet is-size-6-mobile is-uppercase has-text-centered">Donasi Kegiatan</h1>
+        <div class="columns is-multiline">
+          <div class="column
+          is-12-mobile
+          is-12-tablet
+          is-12-desktop">
+              <form method="POST" enctype="multipart/form-data" novalidate>
+                  {% csrf_token %}
+                  <div class="columns  is-multiline mt-1">
+                    <div class="column is-12">
+                      {{ form.event.label_tag }}
+                      {{ form.event }}
+
+                      {% for error in form.event.errors %}
+                          <p class="help is-danger">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    <div class="column is-12">
+                      {{ form.nama_penyumbang.label_tag }}
+                      {{ form.nama_penyumbang }}
+
+                      {% for error in form.nama_penyumbang.errors %}
+                          <p class="help is-danger">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    <div class="column is-12">
+                      {{ form.jumlah.label_tag }}
+                      {{ form.jumlah }}
+
+                      {% for error in form.jumlah.errors %}
+                          <p class="help is-danger">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    <div class="column is-12">
+                      {{ form.ditransfer_ke.label_tag }}
+                      {{ form.ditransfer_ke }}
+
+                      {% for error in form.ditransfer_ke.errors %}
+                          <p class="help is-danger">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    <div class="column is-12">
+                      {{ form.ucapan.label_tag }}
+                      {{ form.ucapan }}
+
+                      {% for error in form.ucapan.errors %}
+                          <p class="help is-danger">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    <div class="column is-12">
+                      {{ form.bukti.label_tag }}
+                      {{ form.bukti }}
+
+                      {% for error in form.bukti.errors %}
+                          <p class="help is-danger">{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    <button type="submit" class="button button-cot is-info ml-3 mt-3 mb-3">Kirim</button>
+                  </div>
+              </form>
+            </div>
+         </div>
+    </div>
+{% endblock %}

@@ -1,6 +1,192 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static mathfilters %}
 
 {% block content %}
-    <h1>{% trans "Halo, Dunia!" %}</h1>
+    <section class="home">
+      <div class="container px-3">
+        <div class="columns is-multiline is-vcentered p-1">
+          <div class="column
+          is-12-mobile
+          is-6-tablet
+          is-6-desktop">
+            <figure class="image is-5by4">
+              <img src="{% static 'site/img/home.png' %}" />
+            </figure>
+          </div>
+          <div class="column
+          is-12-mobile
+          is-6-tablet
+          is-6-desktop has-text-centered">
+            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-6-mobile">
+              Merupakan komunitas yang fokus pada kegiatanya melakukan konservasi sungai, sempadan sungai, dan Biodiversitas area kawasan kanan-kiri sungai.
+            </p>
+            <a href="{% url 'about:profil' %}" class="button button-cot mb-3">Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small p-3">
+      <div class="container px-3">
+        <div class="columns is-multiline">
+          <div class="column
+          is-6 has-text-centered">
+            <div class="card p-4" style="background-color: #5CE7EC">
+                <article class="media">
+                  <figure class="media-center is-hidden-touch">
+                    <p class="image is-128x128">
+                      <img class="is-rounded" src="{% static 'site/img/eye-svgrepo-com.svg' %}">
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="content">
+                      <h1 class="title is-size-4-desktop is-size-5-tablet is-size-6-mobile is-uppercase has-text-centered mt-3" style="color:#008037">Visi</h1>
+                      <p class="subtitle is-size-6">
+                        Mewujudkan pengembangan dan perlindungan sungai di Indonesia serta stakeholder di dalamnyaMewujudkan pengembangan dan perlindungan sungai di Indonesia serta stakeholder di dalamnya.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+            </div>
+          </div>
+          <div class="column
+          is-6 has-text-centered">
+            <div class="card p-4" style="background-color: #5CE7EC">
+                <article class="media">
+                  <figure class="media-center is-hidden-touch">
+                    <p class="image is-128x128">
+                      <img class="is-rounded" src="{% static 'site/img/target-svgrepo-com.svg' %}">
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="content">
+                      <h1 class="title is-size-4-desktop is-size-5-tablet is-size-6-mobile is-uppercase has-text-centered mt-3" style="color:#008037">Misi</h1>
+                      <p class="subtitle is-size-6">
+                        Melakukan konservasi, edukasi, advokasi dan riset untuk keberlanjutan sungai serta lingkunganya bersamaan dengan pengembangan ekonomi, sosial dan budaya masyarakat pinggir sungai
+                      </p>
+                    </div>
+                  </div>
+                </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="program mt-4">
+      <div class="container p-3 has-text-centered">
+        <h1 class="title is-size-4-desktop is-size-5-tablet is-size-6-mobile is-uppercase has-text-centered mt-3" style="color:#008037">Program rutin</h1>
+        <div class="columns is-multiline is-vcentered p-1">
+          <div class="column
+          is-4 p-5">
+            <figure class="img-home">
+              <img src="{% static 'site/img/cleaning.svg' %}" />
+            </figure>
+            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-6-mobile">Bersih –bersih lingkungan sungai dari sampah / tumbuhan liar</p>
+          </div>
+          <div class="column
+          is-4 p-5">
+            <figure class="img-home">
+              <img src="{% static 'site/img/groundcheck.svg' %}" />
+            </figure>
+            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-6-mobile">Ground cek ke lapang untuk mengecek fungsi sempadan sungai, dan bangunan liar</p>
+          </div>
+          <div class="column
+          is-4 p-5">
+            <figure class="img-home">
+              <img src="{% static 'site/img/mapping.svg' %}" />
+            </figure>
+            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-6-mobile">Melakukan pemetaan area KAKISU yang gundul</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+            <div class="title is-size-4-desktop is-size-5-tablet is-size-6-mobile is-uppercase has-text-centered mt-3" style="color:#008037">{% trans 'Acara mendatang' %}</div>
+            <div class="columns is-multiline">
+                {% for event in events_mendatang %}
+                <div class="column is-6-desktop is-6-tablet is-12-mobile">
+                    <div class="card">
+                      <div class="card-image is-hidden-mobile">
+                        <figure class="image is-4by3">
+                          {% if event.foto_sebelum %}
+                            <img src="{{ event.foto_sebelum.url }}" alt="Placeholder image">
+                          {% endif %}
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="content is-paddingless">
+                          <a class="title is-size-4-tablet is-size-5-mobile is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
+                          <p class="subtitle is-size-6 mt-2 my-0">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }} <br>
+                              <span class="has-text-info">Donasi terkumpul Rp. {{ event.total|floatformat:"g" }}</span>
+                          </p>
+                          <hr class="is-paddingless">
+                          <div class="columns is-multiline is-mobile">
+                              <div class="column is-6 py-1 has-text-left">
+                                <p class="subtitle is-size-6 mb-1">{{ event.lokasi}}</p>
+                              </div>
+                              <div class="column is-6 py-1 has-text-right">
+                                <p class="subtitle is-size-6 mb-1 mt-1">{{ event.remaining_days }} hari lagi</p>
+                              </div>
+                              <div class="column is-12 py-1">
+                                <div class="tags">
+                                    {% for tag in event.tags.all %}
+                                        <span> <a class="tag is-medium has-background-light m-1">{{ tag }}</a></span>
+                                    {% endfor %}
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="has-text-centered">
+                <a href="{% url 'event:event_list' %}" class="button button-cot">Lebih banyak</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero" style="background-color: #03898E">
+      <div class="section">
+          <div class="container">
+            <div class="columns is-multiline is-vcentered">
+              <div class="column
+              is-12-mobile
+              is-6-tablet
+              is-6-desktop has-text-right py-5">
+                <figure class="image is-5by4">
+                  <img src="{% static 'site/img/sampah_ciliwung.png' %}" />
+                </figure>
+              </div>
+              <div class="column
+              is-12-mobile
+              is-6-tablet
+              is-6-desktop has-text-left">
+                <p class="title is-size-4-desktop is-size-5-tablet is-size-5-mobile is-capitalized has-text-white mb-3">Alam Membutuhkan Kamu!!!</p>
+                <p class="subtitle is-size-6 is-capitalized has-text-white mb-3 mt-3">Dengan memberikan donasi, kamu ikut mendukung upaya kami dalam melindungi alam.</p>
+                <a href="{% url 'event:donasi' %}" class="button button-cot mb-3">DONASI</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <section class="hero">
+        <div class="container px-3">
+            <div class="title is-size-4-desktop is-size-5-tablet is-size-6-mobile is-uppercase has-text-centered mt-3" style="color:#008037">{% trans 'Blog' %}</div>
+            {% with related_posts as posts %}
+                {% include 'blog/parts/related_posts.html' %}
+            {% endwith %}
+            <div class="has-text-centered my-3">
+                <a href="{% url 'blog:list' %}" class="button button-cot">Lebih banyak</a>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}
