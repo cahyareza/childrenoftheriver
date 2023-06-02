@@ -15,7 +15,11 @@ class Tim(CreationModificationDateBase, UrlBase):
     posisi = models.CharField(max_length=50)
     linkedin = models.URLField(max_length=500)
     foto = models.ImageField(null=True, blank=True)
+    display_order = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.nama
+
+    class Meta:
+        ordering = ('display_order',)
 
