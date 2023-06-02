@@ -17,7 +17,7 @@
           is-12-mobile
           is-6-tablet
           is-6-desktop has-text-centered">
-            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-5-mobile">
+            <p class="subtitle is-size-5-tablet is-size-6-mobile">
               Merupakan komunitas yang fokus pada kegiatanya melakukan konservasi sungai, sempadan sungai, dan Biodiversitas area kawasan kanan-kiri sungai.
             </p>
             <a href="{% url 'about:profil' %}" class="button button-cot mb-3">Selengkapnya</a>
@@ -32,11 +32,11 @@
           <div class="column
           is-12 has-text-centered mx-3 my-4">
             <h1 class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3" style="color:#008037">Visi</h1>
-            <p class="subtitle is-size-6 mt-3">
+            <p class="subtitle is-size-5-tablet is-size-6-mobile mt-3">
                 Mewujudkan pengembangan dan perlindungan sungai di Indonesia serta stakeholder di dalamnya.
             </p>
             <h1 class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mt-3 mb-3" style="color:#008037">Misi</h1>
-            <p class="subtitle is-size-6 mt-3">
+            <p class="subtitle is-size-5-tablet is-size-6-mobile mt-3">
               Melakukan konservasi, edukasi, advokasi dan riset untuk keberlanjutan sungai serta lingkunganya bersamaan dengan pengembangan ekonomi, sosial dan budaya masyarakat pinggir sungai
             </p>
           </div>
@@ -53,35 +53,35 @@
             <figure class="img-home">
               <img src="{% static 'site/img/cleaning.svg' %}" />
             </figure>
-            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-5-mobile">Bersih –bersih lingkungan sungai dari sampah / tumbuhan liar</p>
+            <p class="subtitle is-size-5-tablet is-size-6-mobile">Bersih –bersih lingkungan sungai dari sampah / tumbuhan liar</p>
           </div>
           <div class="column
           is-4 p-5">
             <figure class="img-home">
               <img src="{% static 'site/img/groundcheck.svg' %}" />
             </figure>
-            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-5-mobile">Ground cek ke lapang untuk mengecek fungsi sempadan sungai, dan bangunan liar</p>
+            <p class="subtitle is-size-5-tablet is-size-6-mobile">Ground cek ke lapang untuk mengecek fungsi sempadan sungai, dan bangunan liar</p>
           </div>
           <div class="column
           is-4 p-5">
             <figure class="img-home">
               <img src="{% static 'site/img/mapping.svg' %}" />
             </figure>
-            <p class="subtitle is-size-4-desktop is-size-5-tablet is-size-5-mobile">Melakukan pemetaan area KAKISU yang gundul</p>
+            <p class="subtitle is-size-5-tablet is-size-6-mobile">Melakukan pemetaan area KAKISU yang gundul</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="hero is-light">
+    <section class="hero">
       <div class="hero-body">
         <div class="container">
             <div class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered" style="color:#008037">{% trans 'Acara mendatang' %}</div>
-            <div class="columns is-multiline">
+            <div class="columns is-hidden-mobile is-multiline">
                 {% for event in events_mendatang %}
                 <div class="column is-4-desktop is-6-tablet is-12-mobile">
                     <div class="card">
-                      <div class="card-image is-hidden-mobile">
+                     <div class="card-image">
                         <figure class="image is-4by3">
                           {% if event.foto_sebelum %}
                             <img src="{{ event.foto_sebelum.url }}" alt="Placeholder image">
@@ -116,6 +116,12 @@
                 </div>
                 {% endfor %}
             </div>
+            <div class="columns is-hidden-tablet is-paddingless">
+                <!---------- PRESET LIST START ---------->
+                {% include 'parts/event_swiper.html' %}
+                <!---------- PRESET LIST END ---------->
+            </div>
+
             <div class="has-text-centered">
                 <a href="{% url 'event:event_list' %}" class="button button-cot">Lebih banyak</a>
             </div>
@@ -160,4 +166,8 @@
         </div>
     </section>
 
+{% endblock %}
+
+{% block script %}
+<script src="{% static  'site/js/main.js' %}"></script>
 {% endblock %}
