@@ -91,8 +91,10 @@
                       <div class="card-content">
                         <div class="content is-paddingless">
                           <a class="title is-size-4-tablet is-size-5-mobile is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
-                          <p class="subtitle is-size-6 mt-2 my-0">Dana dibutuhkan Rp. {{ event.dana|floatformat:"g" }} <br>
-                              <span class="has-text-info">Donasi terkumpul Rp. {{ event.total|floatformat:"g" }}</span>
+                          <p class="subtitle is-size-6 mt-2 my-0">Dana Rp. {{ event.dana|floatformat:"g" }} <br>
+                              {% if event.total != 0 %}
+                                <span class="has-text-info">Donasi Rp. {{ event.total|floatformat:"g" }}</span>
+                              {% endif %}
                           </p>
                           <hr class="is-paddingless">
                           <div class="columns is-multiline is-mobile">
@@ -100,12 +102,16 @@
                                 <p class="subtitle is-size-6 mb-1">{{ event.lokasi}}</p>
                               </div>
                               <div class="column is-6 py-1 has-text-right">
-                                <p class="subtitle is-size-6 mb-1 mt-1">{{ event.remaining_days }} hari lagi</p>
+                                {% if event.tanggal_acara >= today %}
+                                    <p class="subtitle is-size-6 mb-1 mt-1">{{ event.remaining_days }} hari lagi</p>
+                                {% else %}
+                                    <p class="subtitle is-size-6 mb-1 mt-1 has-text-danger">Closed</p>
+                                {% endif %}
                               </div>
                               <div class="column is-12 py-1">
                                 <div class="tags">
                                     {% for tag in event.tags.all %}
-                                        <span> <a class="tag is-medium has-background-light m-1">{{ tag }}</a></span>
+                                        <span> <a class="tag is-medium has-background-info-light m-1">{{ tag }}</a></span>
                                     {% endfor %}
                                 </div>
                               </div>

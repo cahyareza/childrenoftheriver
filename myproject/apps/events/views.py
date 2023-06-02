@@ -3,6 +3,8 @@ from myproject.apps.events.models import Event, Komentar
 from .models import Event, KETERANGAN_CHOICES
 from .forms import KomentarForm, DanaForm
 
+from django.utils.timezone import now
+
 def event_list(request):
     facets = {
         "categories": {
@@ -24,12 +26,14 @@ def event_list(request):
         'events_selesai': events_selesai,
         'events': events,
         'facets': facets,
+        'today': now().date(),
     }
 
     return render(request, 'event/event_list.html', context)
 
 def event_detail(request, slug):
     event = get_object_or_404(Event,slug=slug)
+    event_sum = event.event.count()
     komentars = Komentar.objects.all()
     form = KomentarForm(request.POST or None, prefix="form")
 
@@ -46,6 +50,7 @@ def event_detail(request, slug):
         'event': event,
         'form': form,
         'komentars': komentars,
+        'event_sum': event_sum
     }
 
     return render(request, 'event/event_detail.html', context)

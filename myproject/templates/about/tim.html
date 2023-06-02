@@ -9,11 +9,13 @@
       is-12-mobile
       is-4-tablet
       is-4-desktop has-text-centered">
-        <div class="card">
-          <div class="card-image">
+        <div class="card pb-2">
+          <div class="card-image p-3">
             <figure class="image is-1by1">
               {% if tim.foto %}
                 <img src="{{ tim.foto.url }}">
+              {% else %}
+                <img src="{% static 'site/img/tim_default.png' %}">
               {% endif %}
             </figure>
           </div>

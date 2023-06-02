@@ -12,12 +12,7 @@
           </li>
           <li v-bind:class="{ 'is-active': Active == 'visi' }">
             <a v-on:click="Active = 'visi'" href="{% url 'about:visi_misi' %}">
-              <span>Visi & Misi</span>
-            </a>
-          </li>
-          <li v-bind:class="{ 'is-active': Active == 'tujuan' }">
-            <a v-on:click="Active = 'tujuan'" href="{% url 'about:visi_misi' %}">
-              <span>Tujuan</span>
+              <span>Visi Misi & Tujuan</span>
             </a>
           </li>
           <li v-bind:class="{ 'is-active': Active == 'model' }">
