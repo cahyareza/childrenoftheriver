@@ -44,7 +44,7 @@
                           </div>
                           <div class="card-content">
                             <div class="content is-paddingless">
-                              <a class="title is-size-4-tablet is-size-5-mobile is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
+                              <a class="title is-size-5-tablet is-size-5-mobile is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
                               <p class="subtitle is-size-6 mt-2 my-0">Dana Rp. {{ event.dana|floatformat:"g" }} <br>
                                   {% if event.total != 0 %}
                                     <span class="has-text-info">Donasi Rp. {{ event.total|floatformat:"g" }}</span>
