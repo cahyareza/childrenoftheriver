@@ -7,15 +7,15 @@
   become: yes
 
   tasks:
-    - name: Clone/pull project repo
-      git:
-        repo: "{{ project_repo }}"
-        dest: "{{ project_root }}/src/{{ project_name }}"
-        accept_hostkey: yes
-      become: yes
-      become_user: "{{ user_username }}"
-      notify:
-        - restart gunicorn
+#    - name: Clone/pull project repo
+#      git:
+#        repo: "{{ project_repo }}"
+#        dest: "{{ project_root }}/src/{{ project_name }}"
+#        accept_hostkey: yes
+#      become: yes
+#      become_user: "{{ user_username }}"
+#      notify:
+#        - restart gunicorn
 
     - name: Install python packages
       pip:

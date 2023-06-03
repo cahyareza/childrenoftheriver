@@ -16,7 +16,7 @@ wsgi_module: myproject.wsgi
 python_path: "{{ project_root }}/src/{{ project_name }}"
 
 # the git repository URL for the project
-project_repo: git@github.com:cahyareza/bensil_validation_clone.git
+project_repo: git@github.com:cahyareza/childrenoftheriver.git
 
 # The value of your django project's STATIC_ROOT settings.
 static_root: "{{ python_path }}/static"
