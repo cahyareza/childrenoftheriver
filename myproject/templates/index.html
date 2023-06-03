@@ -31,11 +31,11 @@
         <div class="columns is-multiline">
           <div class="column
           is-12 has-text-centered mx-3 my-4">
-            <h1 class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3" style="color:#008037">Visi</h1>
+            <h1 class="title is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3" style="color:#008037">Visi</h1>
             <p class="subtitle is-size-5-tablet is-size-6-mobile mt-3">
                 Mewujudkan pengembangan dan perlindungan sungai di Indonesia serta stakeholder di dalamnya.
             </p>
-            <h1 class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mt-3 mb-3" style="color:#008037">Misi</h1>
+            <h1 class="title is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mt-3 mb-3" style="color:#008037">Misi</h1>
             <p class="subtitle is-size-5-tablet is-size-6-mobile mt-3">
               Melakukan konservasi, edukasi, advokasi dan riset untuk keberlanjutan sungai serta lingkunganya bersamaan dengan pengembangan ekonomi, sosial dan budaya masyarakat pinggir sungai
             </p>
@@ -46,7 +46,7 @@
 
     <section class="program mt-4">
       <div class="container p-3 has-text-centered">
-        <h1 class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3 mt-3" style="color:#008037">Program rutin</h1>
+        <h1 class="title is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3 mt-3" style="color:#008037">Program rutin</h1>
         <div class="columns is-multiline is-vcentered p-1">
           <div class="column
           is-4 p-5">
@@ -76,7 +76,7 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container">
-            <div class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered" style="color:#008037">{% trans 'Acara mendatang' %}</div>
+            <div class="title is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered" style="color:#008037">{% trans 'Acara mendatang' %}</div>
             <div class="columns is-hidden-mobile is-multiline">
                 {% for event in events_mendatang %}
                 <div class="column is-4-desktop is-6-tablet is-12-mobile">
@@ -90,7 +90,7 @@
                       </div>
                       <div class="card-content">
                         <div class="content is-paddingless">
-                          <a class="title is-size-4-tablet is-size-5-mobile is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
+                          <a class="title is-size-5-tablet is-size-5-mobile is-capitalized mb-2" href="{% url 'event:event_detail' event.slug %}">{{ event.nama}}</a>
                           <p class="subtitle is-size-6 mt-2 my-0">Dana Rp. {{ event.dana|floatformat:"g" }} <br>
                               {% if event.total != 0 %}
                                 <span class="has-text-info">Donasi Rp. {{ event.total|floatformat:"g" }}</span>
@@ -162,7 +162,7 @@
 
     <section class="hero">
         <div class="container px-3">
-            <div class="title is-size-3-desktop is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3 mt-4" style="color:#008037">{% trans 'Blog' %}</div>
+            <div class="title is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3 mt-4" style="color:#008037">{% trans 'Blog' %}</div>
             {% with related_posts as posts %}
                 {% include 'blog/parts/related_posts.html' %}
             {% endwith %}
