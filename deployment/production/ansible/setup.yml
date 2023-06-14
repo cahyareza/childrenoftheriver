@@ -43,15 +43,10 @@
       apt: pkg={{ item }} update-cache=yes
       with_items:
         - git
-        - libmemcached-dev
-        - mailutils
-        - memcached
         - nginx
-        - postfix
         - postgresql-10
         - postgresql-client-10
         - postgresql-server-dev-10
-        - redis-server
         - ssl-cert
         - tzdata
         - unzip
@@ -179,21 +174,6 @@
           notify:
             - restart nginx
 
-    - name: Copy memcached config
-      template: src=../../ansible_templates/memcached.j2 dest=/etc/memcached.conf
-      notify:
-      - restart memcached
-
-    - name: Copy postfix config
-      template: src=../../ansible_templates/postfix.j2 dest=/etc/postfix/main.cf
-      notify:
-      - restart postfix
-
-    - name: Copy postfix forwarding config
-      template: src=../../ansible_templates/virtual.j2 dest=/etc/postfix/virtual
-      notify:
-      - activate postfix forwarding
-
 
   handlers:
     - name: restart postgresql
@@ -201,15 +181,6 @@
 
     - name: restart nginx
       service: name=nginx state=restarted
-
-    - name: restart memcached
-      service: name=memcached state=restarted
-
-    - name: restart postfix
-      service: name=postfix state=restarted
-
-    - name: activate postfix forwarding
-      command: postmap /etc/postfix/virtual
 
     - name: update tzdata
       command: /usr/sbin/dpkg-reconfigure --frontend noninteractive tzdata
