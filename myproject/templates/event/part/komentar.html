@@ -1,0 +1,32 @@
+<form method="POST" enctype="multipart/form-data" novalidate>
+  {% csrf_token %}
+  <div class="columns  is-multiline mt-1">
+    <div class="column is-12">
+      {{ form.nama.label_tag }}
+      {{ form.nama }}
+
+      {% for error in form.nama.errors %}
+          <p class="help is-danger">{{ error }}</p>
+      {% endfor %}
+    </div>
+    <div class="column is-12">
+      {{ form.daerah.label_tag }}
+      {{ form.daerah }}
+
+      {% for error in form.daerah.errors %}
+          <p class="help is-danger">{{ error }}</p>
+      {% endfor %}
+    </div>
+    <div class="column is-12">
+      {{ form.komentar.label_tag }}
+      {{ form.komentar }}
+
+      {% for error in form.komentar.errors %}
+          <p class="help is-danger">{{ error }}</p>
+      {% endfor %}
+
+      <p class="subtitle mt-2" style="font-size: 11px;">{{ form.pinsta_link.help_text }}</p>
+    </div>
+    <button name="btn2" type="submit" class="button button-cot p-2 mt-2 ml-3 mb-3">Submit</button>
+  </div>
+</form>

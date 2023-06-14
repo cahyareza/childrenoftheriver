@@ -20,15 +20,15 @@
       notify:
         - restart gunicorn
 
-    - name: Install python packages
-      pip:
-        requirements: "{{ project_root }}/src/{{ project_name }}/requirements/production.txt"
-        virtualenv: "{{ project_root }}/env"
-        virtualenv_site_packages: yes
-      become: yes
-      become_user: "{{ user_username }}"
-      notify:
-        - restart gunicorn
+#    - name: Install python packages
+#      pip:
+#        requirements: "{{ project_root }}/src/{{ project_name }}/requirements/production.txt"
+#        virtualenv: "{{ project_root }}/env"
+#        virtualenv_site_packages: yes
+#      become: yes
+#      become_user: "{{ user_username }}"
+#      notify:
+#        - restart gunicorn
 
     - name: Django migrate
       django_manage:
@@ -46,9 +46,6 @@
     - name: Restart gunicorn for start page
       command: /bin/true
       notify: restart gunicorn
-
-    - name: Make sure that Redis is running and is enabled to survive reboot
-      service: name=redis-server state=started enabled=yes
 
     - name: Make sure Nginx server is running and enabled to survive reboot
       service: name=nginx state=started enabled=yes

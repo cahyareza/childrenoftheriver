@@ -164,7 +164,7 @@
         <div class="container px-3">
             <div class="title is-size-4-tablet is-size-5-mobile is-uppercase has-text-centered mb-3 mt-4" style="color:#008037">{% trans 'Blog' %}</div>
             {% with related_posts as posts %}
-                {% include 'blog/parts/related_posts.html' %}
+                {% include 'blog/part/related_posts.html' %}
             {% endwith %}
             <div class="has-text-centered my-3">
                 <a href="{% url 'blog:list' %}" class="button button-cot">Lebih banyak</a>
